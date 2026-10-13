@@ -17,13 +17,13 @@ import { MotionCard } from "@/components/motion/MotionCard";
 import type { DashboardStats } from "@/lib/types";
 
 const STATUS_COLORS: Record<string, string> = {
-  completed: "#0d9488",
-  pending: "#f59e0b",
-  processing: "#0ea5e9",
-  failed: "#f43f5e",
+  completed: "#06d6a0",
+  pending: "#ffd166",
+  processing: "#4cc9f0",
+  failed: "#ff5a5f",
 };
 
-const TYPE_COLORS = ["#0d9488", "#0f766e", "#115e59", "#134e4a", "#14b8a6"];
+const TYPE_COLORS = ["#ff5a5f", "#ffd166", "#06d6a0", "#4cc9f0", "#1b2b4b"];
 
 export function DashboardCharts({ stats }: { stats: DashboardStats | null }) {
   const statusData = stats
@@ -47,20 +47,20 @@ export function DashboardCharts({ stats }: { stats: DashboardStats | null }) {
       <MotionCard className="p-5" delay={0.05} hover3d={false}>
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-ink-muted">
               Visualization
             </p>
-            <h2 className="mt-1 font-display text-lg font-semibold text-slate-900">
+            <h2 className="mt-1 font-display text-lg font-semibold text-ink">
               Document status mix
             </h2>
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs font-semibold text-ink-soft">
               Share of corpus by processing state
               {totalDocs ? ` · ${totalDocs} total` : ""}
             </p>
           </div>
           <Link
             href="/documents"
-            className="shrink-0 text-xs font-semibold text-teal-700 hover:underline"
+            className="shrink-0 text-xs font-extrabold text-coral hover:underline"
           >
             Open documents
           </Link>
@@ -78,33 +78,35 @@ export function DashboardCharts({ stats }: { stats: DashboardStats | null }) {
                   innerRadius={54}
                   outerRadius={86}
                   paddingAngle={3}
-                  stroke="none"
+                  stroke="#1b2b4b"
+                  strokeWidth={2}
                 >
                   {statusData.map((entry) => (
                     <Cell
                       key={entry.name}
-                      fill={STATUS_COLORS[entry.name] ?? "#94a3b8"}
+                      fill={STATUS_COLORS[entry.name] ?? "#6b7c99"}
                     />
                   ))}
                 </Pie>
                 <Tooltip
                   contentStyle={{
-                    borderRadius: 12,
-                    border: "1px solid #e2e8f0",
+                    borderRadius: 16,
+                    border: "2.5px solid rgba(27,43,75,0.15)",
                     fontSize: 12,
+                    background: "#fffdf8",
                   }}
                 />
                 <Legend
                   verticalAlign="bottom"
                   height={36}
                   formatter={(value) => (
-                    <span className="text-xs capitalize text-slate-600">{value}</span>
+                    <span className="text-xs font-bold capitalize text-ink-soft">{value}</span>
                   )}
                 />
               </PieChart>
             </ResponsiveContainer>
           ) : (
-            <p className="flex h-full items-center justify-center text-sm text-slate-500">
+            <p className="flex h-full items-center justify-center text-sm font-semibold text-ink-muted">
               {stats ? "No document status data yet" : "Loading chart…"}
             </p>
           )}
@@ -114,19 +116,19 @@ export function DashboardCharts({ stats }: { stats: DashboardStats | null }) {
       <MotionCard className="p-5" delay={0.1} hover3d={false}>
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-ink-muted">
               Visualization
             </p>
-            <h2 className="mt-1 font-display text-lg font-semibold text-slate-900">
+            <h2 className="mt-1 font-display text-lg font-semibold text-ink">
               Insights by type
             </h2>
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs font-semibold text-ink-soft">
               Trend · anomaly · recommendation · summary
             </p>
           </div>
           <Link
             href="/insights"
-            className="shrink-0 text-xs font-semibold text-teal-700 hover:underline"
+            className="shrink-0 text-xs font-extrabold text-coral hover:underline"
           >
             Open insights
           </Link>
@@ -137,37 +139,40 @@ export function DashboardCharts({ stats }: { stats: DashboardStats | null }) {
               <BarChart data={insightTypeData} barCategoryGap="28%">
                 <XAxis
                   dataKey="name"
-                  tick={{ fontSize: 11, fill: "#64748b" }}
+                  tick={{ fontSize: 11, fill: "#3a4d73", fontWeight: 700 }}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis
                   allowDecimals={false}
-                  tick={{ fontSize: 11, fill: "#64748b" }}
+                  tick={{ fontSize: 11, fill: "#3a4d73", fontWeight: 700 }}
                   axisLine={false}
                   tickLine={false}
                   width={28}
                 />
                 <Tooltip
-                  cursor={{ fill: "rgba(13,148,136,0.06)" }}
+                  cursor={{ fill: "rgba(255,90,95,0.08)" }}
                   contentStyle={{
-                    borderRadius: 12,
-                    border: "1px solid #e2e8f0",
+                    borderRadius: 16,
+                    border: "2.5px solid rgba(27,43,75,0.15)",
                     fontSize: 12,
+                    background: "#fffdf8",
                   }}
                 />
-                <Bar dataKey="count" radius={[8, 8, 0, 0]}>
+                <Bar dataKey="count" radius={[10, 10, 0, 0]}>
                   {insightTypeData.map((_, i) => (
                     <Cell
                       key={i}
                       fill={TYPE_COLORS[i % TYPE_COLORS.length]}
+                      stroke="#1b2b4b"
+                      strokeWidth={1.5}
                     />
                   ))}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
           ) : (
-            <p className="flex h-full items-center justify-center text-sm text-slate-500">
+            <p className="flex h-full items-center justify-center text-sm font-semibold text-ink-muted">
               {stats ? "No insights yet" : "Loading chart…"}
             </p>
           )}

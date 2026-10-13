@@ -54,8 +54,8 @@ export default function CatalogPage() {
             onClick={() => setTab(t.id)}
             className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
               tab === t.id
-                ? "bg-teal-600 text-white"
-                : "bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-50"
+                ? "bg-coral text-white"
+                : "bg-paper text-ink-soft ring-1 ring-ink/15 hover:bg-paper-warm/60"
             }`}
           >
             {t.label}
@@ -64,9 +64,9 @@ export default function CatalogPage() {
       </div>
 
       {tab === "products" ? (
-        <div className="overflow-hidden rounded-xl border border-slate-200/80 bg-white/80 shadow-sm">
+        <div className="overflow-hidden rounded-xl border-[2.5px] border-ink/15 bg-paper/80 shadow-sm">
           <table className="min-w-full text-left text-sm">
-            <thead className="border-b bg-slate-50/80 text-xs uppercase text-slate-500">
+            <thead className="border-b bg-paper-warm/80 text-xs uppercase text-ink-muted">
               <tr>
                 <th className="px-4 py-3">Name</th>
                 <th className="px-4 py-3">SKU</th>
@@ -75,14 +75,14 @@ export default function CatalogPage() {
                 <th className="px-4 py-3">Category</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-ink/10">
               {products.map((p) => (
                 <tr key={p.id}>
-                  <td className="px-4 py-3 font-medium text-slate-800">{p.name}</td>
-                  <td className="px-4 py-3 text-slate-600">{p.sku}</td>
+                  <td className="px-4 py-3 font-medium text-ink">{p.name}</td>
+                  <td className="px-4 py-3 text-ink-soft">{p.sku}</td>
                   <td className="px-4 py-3">${p.price.toFixed(2)}</td>
-                  <td className="px-4 py-3 text-slate-600">{p.seller_name ?? "—"}</td>
-                  <td className="px-4 py-3 text-slate-600">{p.category_name ?? "—"}</td>
+                  <td className="px-4 py-3 text-ink-soft">{p.seller_name ?? "—"}</td>
+                  <td className="px-4 py-3 text-ink-soft">{p.category_name ?? "—"}</td>
                 </tr>
               ))}
             </tbody>
@@ -95,11 +95,11 @@ export default function CatalogPage() {
           {sellers.map((s) => (
             <div
               key={s.id}
-              className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm"
+              className="rounded-xl border-[2.5px] border-ink/15 bg-paper/80 p-4 shadow-sm"
             >
-              <h3 className="font-display font-semibold text-slate-900">{s.name}</h3>
-              <p className="text-sm text-slate-500">{s.region}</p>
-              <p className="mt-2 text-xs text-slate-400">{s.product_count} products</p>
+              <h3 className="font-display font-semibold text-ink">{s.name}</h3>
+              <p className="text-sm text-ink-muted">{s.region}</p>
+              <p className="mt-2 text-xs text-ink-muted">{s.product_count} products</p>
             </div>
           ))}
         </div>
@@ -110,11 +110,11 @@ export default function CatalogPage() {
           {categories.map((c) => (
             <div
               key={c.id}
-              className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm"
+              className="rounded-xl border-[2.5px] border-ink/15 bg-paper/80 p-4 shadow-sm"
             >
-              <h3 className="font-display font-semibold text-slate-900">{c.name}</h3>
-              <p className="mt-1 text-sm text-slate-600">{c.description}</p>
-              <p className="mt-2 text-xs text-slate-400">{c.product_count} products</p>
+              <h3 className="font-display font-semibold text-ink">{c.name}</h3>
+              <p className="mt-1 text-sm text-ink-soft">{c.description}</p>
+              <p className="mt-2 text-xs text-ink-muted">{c.product_count} products</p>
             </div>
           ))}
         </div>
@@ -124,7 +124,7 @@ export default function CatalogPage() {
         <div className="space-y-4">
           {graph ? <CatalogGraphViz graph={graph} /> : null}
           {graph?.summary ? (
-            <pre className="overflow-x-auto rounded-lg bg-slate-900 p-4 text-xs text-slate-300">
+            <pre className="overflow-x-auto rounded-lg bg-ink p-4 text-xs text-ink-muted">
               {JSON.stringify(graph.summary, null, 2)}
             </pre>
           ) : null}

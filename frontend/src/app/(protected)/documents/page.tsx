@@ -53,41 +53,41 @@ export default function DocumentsPage() {
       <form
         data-tour="upload-zone"
         onSubmit={onUpload}
-        className="mb-8 rounded-xl border border-slate-200/80 bg-white/80 p-5 shadow-sm transition hover:shadow-md"
+        className="mb-8 rounded-xl border-[2.5px] border-ink/15 bg-paper/80 p-5 shadow-sm transition hover:shadow-md"
       >
-        <h2 className="text-sm font-semibold text-slate-800">Upload document</h2>
+        <h2 className="text-sm font-semibold text-ink">Upload document</h2>
         <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end">
           <div className="flex-1">
-            <label className="text-xs font-medium text-slate-500">Title</label>
+            <label className="text-xs font-medium text-ink-muted">Title</label>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Optional display title"
-              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+              className="mt-1 w-full rounded-lg border-[2.5px] border-ink/15 px-3 py-2 text-sm outline-none focus:border-coral focus:ring-1 focus:ring-coral"
             />
           </div>
           <div className="flex-1">
-            <label className="text-xs font-medium text-slate-500">File</label>
+            <label className="text-xs font-medium text-ink-muted">File</label>
             <input
               type="file"
               required
               onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-              className="mt-1 block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-teal-600 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-teal-500"
+              className="mt-1 block w-full text-sm text-ink-soft file:mr-3 file:rounded-lg file:border-0 file:bg-coral file:px-3 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-coral"
             />
           </div>
           <button
             type="submit"
             disabled={uploading || !file}
-            className="rounded-lg bg-teal-600 px-5 py-2 text-sm font-semibold text-white hover:bg-teal-500 disabled:opacity-50"
+            className="rounded-lg bg-coral px-5 py-2 text-sm font-semibold text-white hover:bg-coral disabled:opacity-50"
           >
             {uploading ? "Uploading…" : "Upload"}
           </button>
         </div>
       </form>
 
-      <div className="overflow-hidden rounded-xl border border-slate-200/80 bg-white/80 shadow-sm">
+      <div className="overflow-hidden rounded-xl border-[2.5px] border-ink/15 bg-paper/80 shadow-sm">
         <table className="min-w-full text-left text-sm">
-          <thead className="border-b border-slate-100 bg-slate-50/80 text-xs uppercase tracking-wide text-slate-500">
+          <thead className="border-b border-ink/10 bg-paper-warm/80 text-xs uppercase tracking-wide text-ink-muted">
             <tr>
               <th className="px-4 py-3 font-medium">Title</th>
               <th className="px-4 py-3 font-medium">Status</th>
@@ -96,29 +96,29 @@ export default function DocumentsPage() {
               <th className="px-4 py-3 font-medium">Updated</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-ink/10">
             {docs.map((d) => (
-              <tr key={d.id} className="hover:bg-slate-50/50">
+              <tr key={d.id} className="hover:bg-paper-warm/50">
                 <td className="px-4 py-3">
                   <Link
                     href={`/documents/${d.id}`}
-                    className="font-medium text-teal-700 hover:underline"
+                    className="font-medium text-coral hover:underline"
                   >
                     {d.title}
                   </Link>
-                  <p className="text-xs text-slate-400">{d.file_name}</p>
+                  <p className="text-xs text-ink-muted">{d.file_name}</p>
                 </td>
                 <td className="px-4 py-3">
                   <StatusBadge status={d.status} />
                 </td>
-                <td className="px-4 py-3 text-slate-600">{formatBytes(d.file_size)}</td>
-                <td className="px-4 py-3 text-slate-600">{d.chunk_count}</td>
-                <td className="px-4 py-3 text-slate-500">{formatDate(d.updated_at)}</td>
+                <td className="px-4 py-3 text-ink-soft">{formatBytes(d.file_size)}</td>
+                <td className="px-4 py-3 text-ink-soft">{d.chunk_count}</td>
+                <td className="px-4 py-3 text-ink-muted">{formatDate(d.updated_at)}</td>
               </tr>
             ))}
             {!docs.length ? (
               <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-slate-500">
+                <td colSpan={5} className="px-4 py-8 text-center text-ink-muted">
                   No documents yet — upload one to start the pipeline.
                 </td>
               </tr>

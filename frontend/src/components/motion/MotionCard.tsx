@@ -19,7 +19,7 @@ export function MotionCard({
   return (
     <motion.div
       className={cn(
-        "rounded-xl border border-slate-200/80 bg-white/85 shadow-sm backdrop-blur-sm",
+        "rounded-comic border-[2.5px] border-ink/15 bg-paper shadow-comic",
         "transform-gpu will-change-transform",
         className
       )}
@@ -35,8 +35,7 @@ export function MotionCard({
               rotateX: 2,
               rotateY: -2,
               scale: 1.01,
-              boxShadow:
-                "0 18px 40px -20px rgba(15, 23, 42, 0.35), 0 0 0 1px rgba(13, 148, 136, 0.12)",
+              boxShadow: "6px 6px 0 0 rgba(27, 43, 75, 0.2)",
             }
       }
     >

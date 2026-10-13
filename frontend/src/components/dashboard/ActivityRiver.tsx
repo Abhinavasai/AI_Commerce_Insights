@@ -37,20 +37,20 @@ export function ActivityRiver({ stats }: { stats: DashboardStats | null }) {
   return (
     <div
       data-tour="activity"
-      className="rounded-[1.75rem] border border-slate-200/80 bg-white p-6 shadow-sm"
+      className="rounded-[1.75rem] border-[2.5px] border-ink/15 bg-paper p-6 shadow-comic"
     >
       <div className="flex items-end justify-between gap-4">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-ink-muted">
             Signal river
           </p>
-          <h2 className="mt-1 font-display text-xl font-semibold text-slate-900">
+          <h2 className="mt-1 font-display text-xl font-semibold text-ink">
             Recent movement
           </h2>
         </div>
         <Link
           href="/documents"
-          className="text-xs font-semibold text-teal-700 hover:underline"
+          className="text-xs font-extrabold text-coral hover:underline"
         >
           All documents
         </Link>
@@ -58,7 +58,7 @@ export function ActivityRiver({ stats }: { stats: DashboardStats | null }) {
 
       <ol className="relative mt-6 space-y-0">
         <div
-          className="absolute bottom-2 left-[15px] top-2 w-px bg-gradient-to-b from-teal-400 via-slate-200 to-transparent"
+          className="absolute bottom-2 left-[15px] top-2 w-1 rounded-full bg-gradient-to-b from-coral via-sun to-transparent"
           aria-hidden
         />
         {events.map((ev, i) => (
@@ -70,30 +70,30 @@ export function ActivityRiver({ stats }: { stats: DashboardStats | null }) {
             className="relative grid grid-cols-[32px_1fr] gap-3 py-3"
           >
             <span
-              className={`relative z-[1] mt-1 flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-bold ring-4 ring-white ${
+              className={`relative z-[1] mt-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-ink/15 text-[10px] font-extrabold ring-4 ring-paper ${
                 ev.kind === "document"
-                  ? "bg-teal-600 text-white"
-                  : "bg-amber-500 text-white"
+                  ? "bg-coral text-white"
+                  : "bg-sun text-ink"
               }`}
             >
               {ev.kind === "document" ? "D" : "I"}
             </span>
             <Link
               href={ev.href}
-              className="group rounded-2xl px-3 py-2 transition hover:bg-slate-50"
+              className="group rounded-2xl px-3 py-2 transition hover:bg-sun-soft/70"
             >
               <div className="flex flex-wrap items-center gap-2">
-                <p className="text-sm font-semibold text-slate-900 group-hover:text-teal-800">
+                <p className="text-sm font-extrabold text-ink group-hover:text-coral-dark">
                   {ev.title}
                 </p>
                 {ev.status ? <StatusBadge status={ev.status} /> : null}
               </div>
-              <p className="mt-0.5 text-xs text-slate-500">{ev.meta}</p>
+              <p className="mt-0.5 text-xs font-semibold text-ink-muted">{ev.meta}</p>
             </Link>
           </motion.li>
         ))}
         {!events.length ? (
-          <li className="py-6 pl-12 text-sm text-slate-500">
+          <li className="py-6 pl-12 text-sm font-semibold text-ink-muted">
             No activity yet — upload a document to start the river.
           </li>
         ) : null}

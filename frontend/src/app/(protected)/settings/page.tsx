@@ -49,30 +49,30 @@ export default function SettingsPage() {
         description="Update your profile and credentials."
       />
       {error ? <p className="mb-4 text-sm text-rose-600">{error}</p> : null}
-      {message ? <p className="mb-4 text-sm text-teal-700">{message}</p> : null}
+      {message ? <p className="mb-4 text-sm text-coral">{message}</p> : null}
 
       <form
         onSubmit={onSubmit}
-        className="max-w-md space-y-4 rounded-xl border border-slate-200/80 bg-white/80 p-6 shadow-sm"
+        className="max-w-md space-y-4 rounded-xl border-[2.5px] border-ink/15 bg-paper/80 p-6 shadow-sm"
       >
         <div>
-          <label className="text-xs font-medium text-slate-500">Email</label>
-          <p className="mt-1 text-sm text-slate-800">{user?.email ?? "…"}</p>
+          <label className="text-xs font-medium text-ink-muted">Email</label>
+          <p className="mt-1 text-sm text-ink">{user?.email ?? "…"}</p>
         </div>
         <div>
-          <label className="text-xs font-medium text-slate-500">Role</label>
-          <p className="mt-1 text-sm capitalize text-slate-800">{user?.role ?? "…"}</p>
+          <label className="text-xs font-medium text-ink-muted">Role</label>
+          <p className="mt-1 text-sm capitalize text-ink">{user?.role ?? "…"}</p>
         </div>
         <div>
-          <label className="text-xs font-medium text-slate-500">Full name</label>
+          <label className="text-xs font-medium text-ink-muted">Full name</label>
           <input
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-teal-500"
+            className="mt-1 w-full rounded-lg border-[2.5px] border-ink/15 px-3 py-2 text-sm outline-none focus:border-coral"
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-slate-500">
+          <label className="text-xs font-medium text-ink-muted">
             New password (leave blank to keep)
           </label>
           <input
@@ -80,13 +80,13 @@ export default function SettingsPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             minLength={6}
-            className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-teal-500"
+            className="mt-1 w-full rounded-lg border-[2.5px] border-ink/15 px-3 py-2 text-sm outline-none focus:border-coral"
           />
         </div>
         <button
           type="submit"
           disabled={saving}
-          className="rounded-lg bg-teal-600 px-5 py-2 text-sm font-semibold text-white hover:bg-teal-500 disabled:opacity-50"
+          className="rounded-lg bg-coral px-5 py-2 text-sm font-semibold text-white hover:bg-coral disabled:opacity-50"
         >
           {saving ? "Saving…" : "Save changes"}
         </button>

@@ -25,7 +25,7 @@ export default function InsightDetailPage() {
   if (!insight) {
     return (
       <div className="flex justify-center py-20">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-teal-600 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-coral border-t-transparent" />
       </div>
     );
   }
@@ -36,13 +36,13 @@ export default function InsightDetailPage() {
         title={insight.title}
         description={`${insight.insight_type} · ${formatPercent(insight.confidence)} confidence · ${formatDate(insight.created_at)}`}
       />
-      <article className="rounded-xl border border-slate-200/80 bg-white/80 p-6 shadow-sm">
+      <article className="rounded-xl border-[2.5px] border-ink/15 bg-paper/80 p-6 shadow-sm">
         <MarkdownView content={insight.content} />
       </article>
       {insight.tags.length ? (
         <div className="mt-4 flex flex-wrap gap-2">
           {insight.tags.map((t) => (
-            <span key={t} className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600">
+            <span key={t} className="rounded-full bg-sky-soft/60 px-3 py-1 text-xs text-ink-soft">
               #{t}
             </span>
           ))}
@@ -50,11 +50,11 @@ export default function InsightDetailPage() {
       ) : null}
       {insight.source_document_ids.length ? (
         <div className="mt-6">
-          <h2 className="text-sm font-semibold text-slate-800">Source documents</h2>
+          <h2 className="text-sm font-semibold text-ink">Source documents</h2>
           <ul className="mt-2 space-y-1">
             {insight.source_document_ids.map((docId) => (
               <li key={docId}>
-                <Link href={`/documents/${docId}`} className="text-sm text-teal-700 hover:underline">
+                <Link href={`/documents/${docId}`} className="text-sm text-coral hover:underline">
                   {docId}
                 </Link>
               </li>

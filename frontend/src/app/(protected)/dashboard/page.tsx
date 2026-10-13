@@ -28,7 +28,7 @@ export default function DashboardPage() {
         description="Not another KPI wall — an interactive pipeline from documents to decisions."
         action={
           stats ? (
-            <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-teal-200">
+            <span className="rounded-xl border-[2.5px] border-ink bg-ink px-3 py-1 text-xs font-extrabold text-sun">
               Mode · {stats.runtime_mode}
             </span>
           ) : null
@@ -68,10 +68,10 @@ export default function DashboardPage() {
           <Link
             key={chip.label}
             href={chip.href}
-            className="group flex items-center justify-between rounded-2xl border border-dashed border-slate-300 bg-white/60 px-4 py-3 transition hover:border-teal-400 hover:bg-teal-50/50"
+            className="group flex items-center justify-between rounded-2xl border-[2.5px] border-dashed border-ink/25 bg-paper/80 px-4 py-3 shadow-comic transition hover:-translate-y-0.5 hover:border-coral hover:bg-sun-soft"
           >
-            <span className="text-xs font-medium text-slate-500">{chip.label}</span>
-            <span className="font-display text-xl font-semibold text-slate-900 group-hover:text-teal-800">
+            <span className="text-xs font-bold text-ink-muted">{chip.label}</span>
+            <span className="font-display text-xl font-semibold text-ink group-hover:text-coral-dark">
               {chip.value}
             </span>
           </Link>

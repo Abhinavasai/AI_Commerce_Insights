@@ -3,30 +3,53 @@
 @tailwind utilities;
 
 :root {
-  --background: #f1f5f9;
-  --foreground: #0f172a;
+  --background: #e8f4ff;
+  --foreground: #1b2b4b;
+  --ink: #1b2b4b;
+  --paper: #fffdf8;
+  --coral: #ff5a5f;
+  --coral-dark: #e8484d;
+  --sun: #ffd166;
+  --mint: #06d6a0;
+  --mint-dark: #05b586;
+  --sky: #4cc9f0;
+  --bubble: #fff1d6;
+  --blush: #ffe8e6;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-family: var(--font-nunito), system-ui, sans-serif;
 }
 
 .bg-app-gradient {
-  background-color: #eef3f1;
+  background-color: #e8f4ff;
   background-image:
-    radial-gradient(ellipse 70% 45% at 10% 0%, rgba(13, 148, 136, 0.14), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 100% 10%, rgba(15, 23, 42, 0.06), transparent 50%),
-    linear-gradient(180deg, #f8fbfa 0%, #eef3f1 55%, #e8eeeb 100%);
+    radial-gradient(circle at 12% 18%, rgba(255, 209, 102, 0.45) 0 18px, transparent 19px),
+    radial-gradient(circle at 78% 12%, rgba(255, 90, 95, 0.28) 0 14px, transparent 15px),
+    radial-gradient(circle at 92% 42%, rgba(6, 214, 160, 0.35) 0 16px, transparent 17px),
+    radial-gradient(circle at 22% 72%, rgba(76, 201, 240, 0.35) 0 12px, transparent 13px),
+    radial-gradient(ellipse 70% 50% at 8% -10%, rgba(76, 201, 240, 0.35), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 100% 0%, rgba(255, 209, 102, 0.28), transparent 50%),
+    linear-gradient(180deg, #f3f9ff 0%, #e8f4ff 45%, #dff0ff 100%);
 }
 
 .bg-auth-pattern {
-  background-color: #0f172a;
+  background-color: #1b2b4b;
   background-image:
-    radial-gradient(circle at 20% 80%, rgba(13, 148, 136, 0.25) 0%, transparent 45%),
-    radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
-    linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    radial-gradient(circle at 18% 78%, rgba(255, 90, 95, 0.35) 0%, transparent 42%),
+    radial-gradient(circle at 82% 18%, rgba(255, 209, 102, 0.28) 0%, transparent 40%),
+    radial-gradient(circle at 60% 60%, rgba(6, 214, 160, 0.18) 0%, transparent 45%),
+    linear-gradient(135deg, #1b2b4b 0%, #243656 50%, #1b2b4b 100%);
+}
+
+.comic-shadow {
+  box-shadow: 4px 4px 0 0 rgba(27, 43, 75, 0.14);
+}
+
+.comic-shadow-lg {
+  box-shadow: 6px 6px 0 0 rgba(27, 43, 75, 0.16);
 }
 
 @layer utilities {

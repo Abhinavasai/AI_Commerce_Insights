@@ -176,7 +176,7 @@ function ChatPageInner() {
           <button
             type="button"
             onClick={newSession}
-            className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-500"
+            className="rounded-lg bg-coral px-4 py-2 text-sm font-semibold text-white hover:bg-coral"
           >
             New session
           </button>
@@ -186,10 +186,10 @@ function ChatPageInner() {
 
       <div
         data-tour="chat-panel"
-        className="flex h-[calc(100vh-12rem)] min-h-[420px] overflow-hidden rounded-xl border border-slate-200/80 bg-white/90 shadow-sm"
+        className="flex h-[calc(100vh-12rem)] min-h-[420px] overflow-hidden rounded-xl border-[2.5px] border-ink/15 bg-paper shadow-sm"
       >
-        <aside className="w-56 shrink-0 border-r border-slate-100 bg-slate-50/80 p-3">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <aside className="w-56 shrink-0 border-r border-ink/10 bg-paper-warm/80 p-3">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-muted">
             Sessions
           </p>
           <ul className="space-y-1 overflow-y-auto">
@@ -200,19 +200,19 @@ function ChatPageInner() {
                   onClick={() => setActiveId(s.id)}
                   className={`flex-1 truncate rounded-lg px-2 py-2 text-left text-sm ${
                     activeId === s.id
-                      ? "bg-teal-600/15 font-medium text-teal-900"
-                      : "text-slate-700 hover:bg-slate-200/60"
+                      ? "bg-coral/15 font-medium text-coral-dark"
+                      : "text-ink-soft hover:bg-sky-soft"
                   }`}
                 >
                   {s.title}
-                  <span className="block truncate text-[10px] text-slate-400">
+                  <span className="block truncate text-[10px] text-ink-muted">
                     {formatDate(s.updated_at)}
                   </span>
                 </button>
                 <button
                   type="button"
                   onClick={() => removeSession(s.id)}
-                  className="rounded p-1 text-xs text-slate-400 opacity-0 hover:text-rose-600 group-hover:opacity-100"
+                  className="rounded p-1 text-xs text-ink-muted opacity-0 hover:text-rose-600 group-hover:opacity-100"
                   aria-label="Delete session"
                 >
                   ×
@@ -220,7 +220,7 @@ function ChatPageInner() {
               </li>
             ))}
             {!sessions.length ? (
-              <li className="text-xs text-slate-500">No sessions — create one.</li>
+              <li className="text-xs text-ink-muted">No sessions — create one.</li>
             ) : null}
           </ul>
         </aside>
@@ -228,21 +228,21 @@ function ChatPageInner() {
         <div className="flex flex-1 flex-col">
           <div className="flex-1 space-y-4 overflow-y-auto p-4">
             {!activeId ? (
-              <p className="text-sm text-slate-500">Select or create a chat session.</p>
+              <p className="text-sm text-ink-muted">Select or create a chat session.</p>
             ) : null}
             {messages.map((m) => (
               <div
                 key={m.id}
                 className={`max-w-[90%] rounded-xl px-4 py-3 text-sm ${
                   m.role === "user"
-                    ? "ml-auto bg-teal-600 text-white"
-                    : "mr-auto border border-slate-200 bg-slate-50 text-slate-800"
+                    ? "ml-auto bg-coral text-white"
+                    : "mr-auto border-[2.5px] border-ink/15 bg-paper-warm/60 text-ink"
                 }`}
               >
                 {m.role === "assistant" ? (
                   <>
                     {m.toolNotes?.length ? (
-                      <ul className="mb-2 space-y-0.5 font-mono text-[10px] text-slate-500">
+                      <ul className="mb-2 space-y-0.5 font-mono text-[10px] text-ink-muted">
                         {m.toolNotes.map((n, i) => (
                           <li key={i}>{n}</li>
                         ))}
@@ -251,7 +251,7 @@ function ChatPageInner() {
                     {m.content ? (
                       <MarkdownView content={m.content} />
                     ) : m.streaming ? (
-                      <span className="text-slate-400">Thinking…</span>
+                      <span className="text-ink-muted">Thinking…</span>
                     ) : null}
                   </>
                 ) : (
@@ -263,19 +263,19 @@ function ChatPageInner() {
           </div>
           <form
             onSubmit={onSend}
-            className="flex gap-2 border-t border-slate-100 p-3"
+            className="flex gap-2 border-t border-ink/10 p-3"
           >
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={!activeId || sending}
               placeholder={activeId ? "Message the commerce agent…" : "Create a session first"}
-              className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-teal-500 disabled:bg-slate-50"
+              className="flex-1 rounded-lg border-[2.5px] border-ink/15 px-3 py-2 text-sm outline-none focus:border-coral disabled:bg-paper-warm/60"
             />
             <button
               type="submit"
               disabled={!activeId || sending || !input.trim()}
-              className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-500 disabled:opacity-50"
+              className="rounded-xl border-[2.5px] border-ink bg-coral px-4 py-2 text-sm font-extrabold text-white shadow-comic hover:bg-coral-dark disabled:opacity-50"
             >
               Send
             </button>
@@ -291,7 +291,7 @@ export default function ChatPage() {
     <Suspense
       fallback={
         <div className="flex justify-center py-16">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-teal-600 border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-coral border-t-transparent" />
         </div>
       }
     >

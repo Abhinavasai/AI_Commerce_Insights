@@ -19,7 +19,7 @@ export function KpiCard({
   return (
     <motion.div
       className={cn(
-        "rounded-xl border border-slate-200/80 bg-white/85 p-5 shadow-sm backdrop-blur-sm",
+        "rounded-comic border-[2.5px] border-ink/15 bg-paper p-5 shadow-comic",
         "transform-gpu",
         className
       )}
@@ -30,19 +30,19 @@ export function KpiCard({
         reduce
           ? undefined
           : {
-              y: -5,
-              rotateX: 3,
-              rotateY: -3,
-              boxShadow: "0 16px 36px -18px rgba(15,23,42,0.35)",
+              y: -4,
+              rotateX: 2,
+              rotateY: -2,
+              boxShadow: "6px 6px 0 0 rgba(27,43,75,0.2)",
             }
       }
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
     >
-      <p className="text-sm font-medium text-slate-500">{label}</p>
-      <p className="mt-1 font-display text-3xl font-semibold tracking-tight text-slate-900">
+      <p className="text-sm font-bold text-ink-muted">{label}</p>
+      <p className="mt-1 font-display text-3xl font-semibold tracking-tight text-ink">
         {value}
       </p>
-      {hint ? <p className="mt-1 text-xs text-slate-400">{hint}</p> : null}
+      {hint ? <p className="mt-1 text-xs font-semibold text-ink-muted/80">{hint}</p> : null}
     </motion.div>
   );
 }

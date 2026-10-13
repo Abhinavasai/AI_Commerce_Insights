@@ -4,9 +4,9 @@ import { useMemo } from "react";
 import type { CatalogGraph } from "@/lib/types";
 
 const typeColor: Record<string, string> = {
-  seller: "#0f766e",
-  category: "#0369a1",
-  product: "#64748b",
+  seller: "#ff5a5f",
+  category: "#4cc9f0",
+  product: "#06d6a0",
 };
 
 export function CatalogGraphViz({ graph }: { graph: CatalogGraph }) {
@@ -46,7 +46,7 @@ export function CatalogGraphViz({ graph }: { graph: CatalogGraph }) {
   }, [graph]);
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-slate-200/80 bg-white/90 p-4">
+    <div className="overflow-x-auto rounded-xl border-[2.5px] border-ink/15 bg-paper p-4">
       <svg viewBox="0 0 720 360" className="mx-auto h-auto w-full max-w-3xl">
         {layout.edges.map((e, i) => {
           const a = layout.positions.get(e.source);
@@ -59,7 +59,7 @@ export function CatalogGraphViz({ graph }: { graph: CatalogGraph }) {
               y1={a.y}
               x2={b.x}
               y2={b.y}
-              stroke="#cbd5e1"
+              stroke="#1b2b4b" strokeOpacity="0.2"
               strokeWidth={1}
               strokeDasharray={e.rel === "BELONGS_TO" ? "4 3" : undefined}
             />
@@ -76,7 +76,7 @@ export function CatalogGraphViz({ graph }: { graph: CatalogGraph }) {
                 x={p.x + (n.type === "seller" ? 14 : n.type === "category" ? -14 : 0)}
                 y={p.y - 12}
                 textAnchor={n.type === "category" ? "end" : "start"}
-                className="fill-slate-600 text-[10px]"
+                className="fill-ink-soft text-[10px]"
               >
                 {n.label.length > 18 ? `${n.label.slice(0, 16)}…` : n.label}
               </text>
@@ -84,15 +84,15 @@ export function CatalogGraphViz({ graph }: { graph: CatalogGraph }) {
           );
         })}
       </svg>
-      <div className="mt-3 flex flex-wrap gap-4 text-xs text-slate-500">
+      <div className="mt-3 flex flex-wrap gap-4 text-xs text-ink-muted">
         <span className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-teal-700" /> Seller
+          <span className="h-2.5 w-2.5 rounded-full bg-coral" /> Seller
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-sky-700" /> Category
+          <span className="h-2.5 w-2.5 rounded-full bg-sky-cartoon" /> Category
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-slate-500" /> Product
+          <span className="h-2.5 w-2.5 rounded-full bg-mint" /> Product
         </span>
       </div>
     </div>

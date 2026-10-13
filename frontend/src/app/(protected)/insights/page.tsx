@@ -39,7 +39,7 @@ export default function InsightsPage() {
         <select
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-          className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-teal-500"
+          className="rounded-lg border-[2.5px] border-ink/15 bg-paper px-3 py-2 text-sm outline-none focus:border-coral"
         >
           <option value="">All types</option>
           {types.map((t) => (
@@ -52,7 +52,7 @@ export default function InsightsPage() {
           value={tagFilter}
           onChange={(e) => setTagFilter(e.target.value)}
           placeholder="Filter by tag"
-          className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-teal-500"
+          className="rounded-lg border-[2.5px] border-ink/15 bg-paper px-3 py-2 text-sm outline-none focus:border-coral"
         />
       </div>
 
@@ -61,21 +61,21 @@ export default function InsightsPage() {
           <Link
             key={ins.id}
             href={`/insights/${ins.id}`}
-            className="group rounded-xl border border-slate-200/80 bg-white/80 p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md"
+            className="group rounded-xl border-[2.5px] border-ink/15 bg-paper/80 p-5 shadow-sm transition hover:border-coral/50 hover:shadow-md"
           >
             <div className="flex items-start justify-between gap-2">
-              <h2 className="font-display text-lg font-semibold text-slate-900 group-hover:text-teal-800">
+              <h2 className="font-display text-lg font-semibold text-ink group-hover:text-coral-dark">
                 {ins.title}
               </h2>
-              <span className="shrink-0 rounded-full bg-teal-500/10 px-2 py-0.5 text-xs font-medium text-teal-800">
+              <span className="shrink-0 rounded-full bg-coral/10 px-2 py-0.5 text-xs font-medium text-coral-dark">
                 {formatPercent(ins.confidence)}
               </span>
             </div>
-            <p className="mt-2 line-clamp-3 text-sm text-slate-600">{ins.content}</p>
-            <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-slate-500">
-              <span className="rounded bg-slate-100 px-2 py-0.5">{ins.insight_type}</span>
+            <p className="mt-2 line-clamp-3 text-sm text-ink-soft">{ins.content}</p>
+            <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-ink-muted">
+              <span className="rounded bg-sky-soft/60 px-2 py-0.5">{ins.insight_type}</span>
               {ins.tags.slice(0, 3).map((tag) => (
-                <span key={tag} className="rounded bg-slate-100 px-2 py-0.5">
+                <span key={tag} className="rounded bg-sky-soft/60 px-2 py-0.5">
                   #{tag}
                 </span>
               ))}
@@ -84,7 +84,7 @@ export default function InsightsPage() {
           </Link>
         ))}
         {!insights.length ? (
-          <p className="col-span-full text-sm text-slate-500">No insights match your filters.</p>
+          <p className="col-span-full text-sm text-ink-muted">No insights match your filters.</p>
         ) : null}
       </div>
     </>

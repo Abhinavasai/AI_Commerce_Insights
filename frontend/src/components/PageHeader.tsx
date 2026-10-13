@@ -22,11 +22,11 @@ export function PageHeader({
       transition={{ duration: 0.35 }}
     >
       <div>
-        <h1 className="font-display text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+        <h1 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
           {title}
         </h1>
         {description ? (
-          <p className="mt-1 max-w-2xl text-sm text-slate-600">{description}</p>
+          <p className="mt-1 max-w-2xl text-sm font-semibold text-ink-soft">{description}</p>
         ) : null}
       </div>
       {action ? <div className="shrink-0">{action}</div> : null}

@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { DM_Sans, Fraunces } from "next/font/google";
+import { Fredoka, Nunito } from "next/font/google";
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const nunito = Nunito({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-nunito",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const fraunces = Fraunces({
+const fredoka = Fredoka({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["500", "600", "700"],
+  variable: "--font-fredoka",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${fraunces.variable} antialiased`}>
+      <body className={`${nunito.variable} ${fredoka.variable} antialiased`}>
         {children}
       </body>
     </html>

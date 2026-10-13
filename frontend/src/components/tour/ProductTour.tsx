@@ -181,13 +181,13 @@ export function ProductTour({
         exit={{ opacity: 0 }}
       >
         <div
-          className="absolute inset-0 bg-slate-950/55 backdrop-blur-[1px]"
+          className="absolute inset-0 bg-ink/55 backdrop-blur-[1px]"
           onClick={finish}
         />
 
         {rect && (
           <motion.div
-            className="pointer-events-none absolute z-[81] rounded-2xl ring-2 ring-teal-400/90"
+            className="pointer-events-none absolute z-[81] rounded-2xl ring-[3px] ring-sun"
             initial={false}
             animate={{
               top: rect.top,
@@ -198,7 +198,7 @@ export function ProductTour({
             transition={{ type: "spring", stiffness: 320, damping: 28 }}
             style={{
               boxShadow:
-                "0 0 0 9999px rgba(2, 6, 23, 0.58), 0 0 24px 4px rgba(45, 212, 191, 0.35)",
+                "0 0 0 9999px rgba(27, 43, 75, 0.55), 4px 4px 0 0 rgba(255, 209, 102, 0.85)",
               background: "transparent",
             }}
           />
@@ -206,7 +206,7 @@ export function ProductTour({
 
         <motion.div
           key={step.id}
-          className="z-[82] rounded-2xl border border-white/80 bg-white p-5 shadow-2xl"
+          className="z-[82] rounded-2xl border-[3px] border-ink bg-paper p-5 shadow-comic-lg"
           style={{
             ...tooltipStyle(rect, step),
             transformStyle: "preserve-3d",
@@ -218,27 +218,27 @@ export function ProductTour({
           aria-modal="true"
           aria-labelledby="tour-title"
         >
-          <div className="mb-3 h-1.5 overflow-hidden rounded-full bg-slate-100">
+          <div className="mb-3 h-2 overflow-hidden rounded-full border-2 border-ink/10 bg-sun-soft">
             <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-teal-500 to-sky-400"
+              className="h-full rounded-full bg-gradient-to-r from-coral via-sun to-mint"
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.25 }}
             />
           </div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-teal-600">
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-coral">
             Step {index + 1} of {TOUR_STEPS.length}
           </p>
           <h2
             id="tour-title"
-            className="mt-1 font-display text-lg font-semibold tracking-tight text-slate-900"
+            className="mt-1 font-display text-lg font-semibold tracking-tight text-ink"
           >
             {step.title}
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-slate-600">{step.body}</p>
+          <p className="mt-2 text-sm font-semibold leading-relaxed text-ink-soft">{step.body}</p>
           <div className="mt-5 flex flex-wrap items-center justify-between gap-2">
             <button
               type="button"
-              className="cursor-pointer text-xs font-semibold text-slate-500 hover:text-slate-800"
+              className="cursor-pointer text-xs font-extrabold text-ink-muted hover:text-ink"
               onClick={finish}
             >
               Skip tour
@@ -247,7 +247,7 @@ export function ProductTour({
               {index > 0 && (
                 <button
                   type="button"
-                  className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                  className="rounded-xl border-[2.5px] border-ink/15 bg-paper px-3 py-2 text-xs font-extrabold text-ink hover:bg-sun-soft"
                   onClick={() => setIndex((i) => Math.max(0, i - 1))}
                 >
                   Back
@@ -256,7 +256,7 @@ export function ProductTour({
               {index < TOUR_STEPS.length - 1 ? (
                 <button
                   type="button"
-                  className="rounded-lg bg-teal-600 px-3 py-2 text-xs font-semibold text-white hover:bg-teal-500"
+                  className="rounded-xl border-[2.5px] border-ink bg-coral px-3 py-2 text-xs font-extrabold text-white shadow-comic hover:bg-coral-dark"
                   onClick={() => setIndex((i) => i + 1)}
                 >
                   Next
@@ -264,7 +264,7 @@ export function ProductTour({
               ) : (
                 <button
                   type="button"
-                  className="rounded-lg bg-gradient-to-r from-teal-600 to-sky-500 px-3 py-2 text-xs font-semibold text-white"
+                  className="rounded-xl border-[2.5px] border-ink bg-gradient-to-r from-coral to-sun px-3 py-2 text-xs font-extrabold text-ink shadow-comic"
                   onClick={finish}
                 >
                   Finish

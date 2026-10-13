@@ -38,7 +38,7 @@ export function PipelineConstellation({ stats }: { stats: DashboardStats | null 
       href: "/documents",
       value: stats?.totals.documents ?? "—",
       icon: FileText,
-      accent: "from-teal-500 to-teal-700",
+      accent: "from-coral to-coral-dark",
     },
     {
       id: "catalog",
@@ -47,7 +47,7 @@ export function PipelineConstellation({ stats }: { stats: DashboardStats | null 
       href: "/catalog",
       value: stats?.totals.sellers ?? "—",
       icon: Store,
-      accent: "from-slate-700 to-slate-900",
+      accent: "from-sky-cartoon to-sky-cartoon",
     },
     {
       id: "insights",
@@ -56,7 +56,7 @@ export function PipelineConstellation({ stats }: { stats: DashboardStats | null 
       href: "/insights",
       value: stats?.totals.insights ?? "—",
       icon: Sparkles,
-      accent: "from-amber-500 to-orange-600",
+      accent: "from-sun to-[#f0b429]",
     },
     {
       id: "chat",
@@ -65,54 +65,54 @@ export function PipelineConstellation({ stats }: { stats: DashboardStats | null 
       href: "/chat",
       value: stats?.totals.chat_sessions ?? "—",
       icon: MessageSquare,
-      accent: "from-sky-500 to-cyan-700",
+      accent: "from-mint to-mint-dark",
     },
   ];
 
   return (
     <div
       data-tour="kpi-cards"
-      className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-slate-950 text-white shadow-xl shadow-slate-900/20"
+      className="relative overflow-hidden rounded-[1.75rem] border-[3px] border-ink bg-ink text-white shadow-comic-lg"
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-40"
+        className="pointer-events-none absolute inset-0 opacity-90"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 30%, rgba(45,212,191,0.35), transparent 40%), radial-gradient(circle at 80% 70%, rgba(56,189,248,0.2), transparent 35%), linear-gradient(135deg,#0b1220,#111827 55%,#0f172a)",
+            "radial-gradient(circle at 18% 28%, rgba(255,90,95,0.45), transparent 38%), radial-gradient(circle at 82% 68%, rgba(255,209,102,0.35), transparent 36%), radial-gradient(circle at 55% 20%, rgba(6,214,160,0.25), transparent 40%), linear-gradient(135deg,#1b2b4b,#243656 55%,#1b2b4b)",
         }}
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.12]"
+        className="pointer-events-none absolute inset-0 opacity-[0.14]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
+            "radial-gradient(circle, rgba(255,255,255,0.55) 1.5px, transparent 1.6px)",
+          backgroundSize: "22px 22px",
         }}
       />
 
       <div className="relative p-6 md:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-300/90">
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-sun">
               Intelligence pipeline
             </p>
             <h2 className="mt-1 font-display text-2xl font-semibold tracking-tight md:text-3xl">
               From files to decisions
             </h2>
-            <p className="mt-2 max-w-xl text-sm text-slate-300">
+            <p className="mt-2 max-w-xl text-sm font-semibold text-white/75">
               Click any station to open that workspace. Flow reads left → right:
               ingest, extract entities, generate signals, then ask the agent.
             </p>
           </div>
-          <div className="rounded-2xl bg-white/5 px-4 py-3 ring-1 ring-white/10 backdrop-blur">
-            <p className="text-[10px] uppercase tracking-wider text-slate-400">
+          <div className="rounded-2xl border-2 border-white/20 bg-white/10 px-4 py-3 backdrop-blur">
+            <p className="text-[10px] font-extrabold uppercase tracking-wider text-white/60">
               Pipeline health
             </p>
             <p className="mt-1 font-display text-lg text-white">
-              <span className="text-teal-300">{completed}</span>
-              <span className="text-slate-500"> ready</span>
+              <span className="text-mint">{completed}</span>
+              <span className="text-white/50"> ready</span>
               {inFlight ? (
-                <span className="ml-2 text-sm text-amber-300">
+                <span className="ml-2 text-sm font-bold text-sun">
                   · {inFlight} in flight / failed
                 </span>
               ) : null}
@@ -127,26 +127,26 @@ export function PipelineConstellation({ stats }: { stats: DashboardStats | null 
               <div key={node.id} className="flex flex-1 items-stretch lg:items-center">
                 <Link href={node.href} className="group relative block w-full">
                   <motion.div
-                    className="relative h-full overflow-hidden rounded-2xl bg-white/[0.04] p-4 ring-1 ring-white/10 transition group-hover:bg-white/[0.08] group-hover:ring-teal-400/40"
+                    className="relative h-full overflow-hidden rounded-2xl border-2 border-white/15 bg-white/10 p-4 transition group-hover:border-sun/60 group-hover:bg-white/15"
                     whileHover={reduce ? undefined : { y: -4, scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 320, damping: 22 }}
                   >
                     <div
                       className={cn(
-                        "mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-lg",
+                        "mb-4 flex h-10 w-10 items-center justify-center rounded-xl border-2 border-ink/20 bg-gradient-to-br text-ink shadow-comic",
                         node.accent
                       )}
                     >
                       <Icon className="h-5 w-5" />
                     </div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-white/55">
                       {node.label}
                     </p>
                     <p className="mt-1 font-display text-3xl font-semibold tracking-tight">
                       {node.value}
                     </p>
-                    <p className="mt-1 text-xs text-slate-400">{node.sub}</p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-teal-300 opacity-80 group-hover:opacity-100">
+                    <p className="mt-1 text-xs font-semibold text-white/55">{node.sub}</p>
+                    <span className="mt-3 inline-flex items-center gap-1 text-xs font-extrabold text-sun opacity-90 group-hover:opacity-100">
                       Open <ArrowRight className="h-3.5 w-3.5" />
                     </span>
                   </motion.div>
@@ -154,11 +154,11 @@ export function PipelineConstellation({ stats }: { stats: DashboardStats | null 
                 {i < nodes.length - 1 ? (
                   <div className="hidden items-center px-1 lg:flex" aria-hidden>
                     <motion.div
-                      className="h-px w-6 bg-gradient-to-r from-teal-400/80 to-transparent"
+                      className="h-1 w-6 rounded-full bg-gradient-to-r from-sun to-transparent"
                       animate={reduce ? undefined : { opacity: [0.3, 1, 0.3] }}
                       transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
                     />
-                    <ArrowRight className="h-4 w-4 text-teal-400/70" />
+                    <ArrowRight className="h-4 w-4 text-sun/80" />
                   </div>
                 ) : null}
               </div>

@@ -21,19 +21,19 @@ export function SignalBrief({ stats }: { stats: DashboardStats | null }) {
   return (
     <div
       data-tour="analytics"
-      className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-white shadow-sm"
+      className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border-[2.5px] border-ink/15 bg-paper shadow-comic"
     >
-      <div className="border-b border-slate-100 bg-gradient-to-br from-teal-50/80 to-white px-5 py-5">
-        <div className="flex items-center gap-2 text-teal-800">
+      <div className="border-b-[2.5px] border-ink/10 bg-gradient-to-br from-sun-soft via-paper to-mint-soft px-5 py-5">
+        <div className="flex items-center gap-2 text-coral-dark">
           <Sparkles className="h-4 w-4" />
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em]">
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.16em]">
             Daily brief
           </p>
         </div>
-        <h2 className="mt-2 font-display text-xl font-semibold text-slate-900">
+        <h2 className="mt-2 font-display text-xl font-semibold text-ink">
           What needs attention
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+        <p className="mt-2 text-sm font-semibold leading-relaxed text-ink-soft">
           {topInsight
             ? `Latest signal: “${topInsight.title}” (${topInsight.insight_type}). `
             : "No insights yet — generate from a completed document. "}
@@ -45,7 +45,7 @@ export function SignalBrief({ stats }: { stats: DashboardStats | null }) {
       </div>
 
       <div className="flex-1 space-y-3 p-5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+        <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-ink-muted">
           Jump into the agent
         </p>
         {PROMPTS.map((prompt, i) => (
@@ -57,19 +57,19 @@ export function SignalBrief({ stats }: { stats: DashboardStats | null }) {
           >
             <Link
               href={`/chat?q=${encodeURIComponent(prompt)}`}
-              className="group flex items-start justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700 ring-1 ring-slate-200/80 transition hover:bg-teal-50 hover:text-teal-900 hover:ring-teal-200"
+              className="group flex items-start justify-between gap-3 rounded-2xl border-2 border-ink/10 bg-sky-soft/50 px-4 py-3 text-sm font-bold text-ink transition hover:border-coral/40 hover:bg-coral-soft"
             >
               <span>{prompt}</span>
-              <ArrowUpRight className="mt-0.5 h-4 w-4 shrink-0 text-slate-400 group-hover:text-teal-600" />
+              <ArrowUpRight className="mt-0.5 h-4 w-4 shrink-0 text-ink-muted group-hover:text-coral" />
             </Link>
           </motion.div>
         ))}
       </div>
 
-      <div className="border-t border-slate-100 p-4">
+      <div className="border-t-[2.5px] border-ink/10 p-4">
         <Link
           href="/chat"
-          className="flex w-full items-center justify-center rounded-xl bg-teal-600 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-500"
+          className="flex w-full items-center justify-center rounded-xl border-[2.5px] border-ink bg-coral py-2.5 text-sm font-extrabold text-white shadow-comic transition hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-comic-hover"
         >
           Open Ask agent
         </Link>

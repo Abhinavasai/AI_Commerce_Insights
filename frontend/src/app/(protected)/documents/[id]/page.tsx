@@ -28,7 +28,7 @@ export default function DocumentDetailPage() {
   if (!doc) {
     return (
       <div className="flex justify-center py-20">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-teal-600 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-coral border-t-transparent" />
       </div>
     );
   }
@@ -36,7 +36,7 @@ export default function DocumentDetailPage() {
   return (
     <>
       <PageHeader title={doc.title} description={doc.file_name} />
-      <div className="mb-6 flex flex-wrap gap-3 text-sm text-slate-600">
+      <div className="mb-6 flex flex-wrap gap-3 text-sm text-ink-soft">
         <StatusBadge status={doc.status} />
         <span>{formatBytes(doc.file_size)}</span>
         <span>{doc.file_type}</span>
@@ -44,29 +44,29 @@ export default function DocumentDetailPage() {
         <span>Updated {formatDate(doc.updated_at)}</span>
       </div>
       {doc.error_message ? (
-        <p className="mb-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
+        <p className="mb-4 rounded-lg border-[2.5px] border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
           {doc.error_message}
         </p>
       ) : null}
 
-      <h2 className="font-display text-lg font-semibold text-slate-900">Chunks</h2>
+      <h2 className="font-display text-lg font-semibold text-ink">Chunks</h2>
       <div className="mt-4 space-y-3">
         {doc.chunks.map((c) => (
           <article
             key={c.id}
-            className="rounded-xl border border-slate-200/80 bg-white/80 p-4 shadow-sm"
+            className="rounded-xl border-[2.5px] border-ink/15 bg-paper/80 p-4 shadow-sm"
           >
-            <div className="mb-2 flex items-center justify-between text-xs text-slate-500">
+            <div className="mb-2 flex items-center justify-between text-xs text-ink-muted">
               <span>Index {c.chunk_index}</span>
               <span>{c.token_count} tokens</span>
             </div>
-            <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-700">
+            <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-ink-soft">
               {c.content}
             </pre>
           </article>
         ))}
         {!doc.chunks.length ? (
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-ink-muted">
             No chunks yet — processing may still be in progress.
           </p>
         ) : null}
