@@ -56,19 +56,17 @@ See [docs/AWS_DEPLOY.md](docs/AWS_DEPLOY.md).
 docker compose up --build
 ```
 
-## Deploy frontend on Vercel
+## Deploy full demo on Vercel
 
-1. Push this repo to GitHub/GitLab/Bitbucket.
-2. In [Vercel](https://vercel.com): **Add New Project** → import the repo.
-3. Set **Root Directory** to `frontend` (important — do not deploy the monorepo root).
-4. Framework Preset: **Next.js** (auto-detected).
-5. Environment variable:
-   - `NEXT_PUBLIC_API_URL` = public URL of your Core API (e.g. `https://api.yourdomain.com`)
-6. Deploy.
+Vercel hosts **Next.js only**, not Python workers. This repo’s `frontend/` is a
+**self-contained demo**: UI + `/api/v1` routes + seeded SQLite (`frontend/data/demo.db`).
+No login — visitors land on the Signal deck with charts and sample data.
 
-The Python services (`core-api`, `ai-pipeline`, `worker`) are **not** hosted on Vercel. Run them locally, on Docker/ECS, or another host, and point `NEXT_PUBLIC_API_URL` at that API. Ensure the API `CORS_ORIGINS` includes your Vercel domain (e.g. `https://your-app.vercel.app`).
+1. Root Directory: **`frontend`**
+2. Do **not** set `NEXT_PUBLIC_API_URL` (or leave it blank) so the app uses its built-in API
+3. Deploy / Redeploy
 
-Demo login (after API is reachable): `analyst@demo.com` / `demo1234`
+Optional later: point `NEXT_PUBLIC_API_URL` at a separate FastAPI host for the full AWS/local Python stack. See [docs/VERCEL.md](docs/VERCEL.md).
 
 ## Smoke test
 

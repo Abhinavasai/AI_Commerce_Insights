@@ -21,9 +21,10 @@ import type {
   User,
 } from "./types";
 
+// Empty = same-origin Next.js API routes (Vercel demo with bundled SQLite).
+// Override with NEXT_PUBLIC_API_URL to point at a separate FastAPI backend.
 export const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ||
-  "http://localhost:8100";
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "";
 
 function createClient(): AxiosInstance {
   const client = axios.create({

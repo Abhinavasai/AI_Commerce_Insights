@@ -1,33 +1,31 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import { fetchMe } from "@/lib/api";
-import { getAccessToken } from "@/lib/auth";
 import type { User } from "@/lib/types";
 import { ProductTour } from "./tour/ProductTour";
 import { Sidebar } from "./Sidebar";
 
+/** Vercel demo: no login — open the app with seeded SQLite data. */
 export function AuthGuard({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
   const [ready, setReady] = useState(false);
   const [forceTour, setForceTour] = useState(false);
 
   useEffect(() => {
-    const token = getAccessToken();
-    if (!token) {
-      router.replace(`/login?next=${encodeURIComponent(pathname)}`);
-      return;
-    }
     fetchMe()
       .then(setUser)
-      .catch(() => {
-        router.replace(`/login?next=${encodeURIComponent(pathname)}`);
-      })
+      .catch(() =>
+        setUser({
+          id: "demo",
+          email: "analyst@demo.com",
+          full_name: "Demo Analyst",
+          role: "analyst",
+          is_active: true,
+        })
+      )
       .finally(() => setReady(true));
-  }, [pathname, router]);
+  }, []);
 
   if (!ready) {
     return (
@@ -40,7 +38,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen">
       <Sidebar
-        userName={user?.full_name || user?.email}
+        userName={user?.full_name || user?.email || "Demo Analyst"}
         onStartTour={() => setForceTour(true)}
       />
       <main className="relative min-w-0 flex-1 overflow-auto bg-app-gradient p-5 md:p-8">

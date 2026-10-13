@@ -26,6 +26,7 @@ credentials.json
 **/data/*.db-*
 **/data/*.db-wal
 **/data/*.db-shm
+!frontend/data/demo.db
 data/*.db
 data/*.db-*
 storage/uploads/**
