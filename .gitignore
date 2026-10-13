@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Env & secrets (keep *.example committed)
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+credentials.json
+
+# Data & uploads (any service-local copies too)
+**/data/*.db
+**/data/*.db-*
+**/data/*.db-wal
+**/data/*.db-shm
+data/*.db
+data/*.db-*
+storage/uploads/**
+!storage/uploads/.gitkeep
+**/storage/uploads/**
+!**/storage/uploads/.gitkeep
+services/**/storage/
+
+# Node / Next
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/dist/
+frontend/.vercel/
+frontend/tsconfig.tsbuildinfo
+.next/
+.vercel/
+
+# Python packaging
+*.egg-info/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Docker
+localstack-data/

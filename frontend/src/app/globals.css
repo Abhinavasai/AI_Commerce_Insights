@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f1f5f9;
+  --foreground: #0f172a;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+.bg-app-gradient {
+  background-color: #eef3f1;
+  background-image:
+    radial-gradient(ellipse 70% 45% at 10% 0%, rgba(13, 148, 136, 0.14), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 10%, rgba(15, 23, 42, 0.06), transparent 50%),
+    linear-gradient(180deg, #f8fbfa 0%, #eef3f1 55%, #e8eeeb 100%);
+}
+
+.bg-auth-pattern {
+  background-color: #0f172a;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(13, 148, 136, 0.25) 0%, transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+    linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .perspective-1200 {
+    perspective: 1200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

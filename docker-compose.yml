@@ -1,0 +1,112 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: commerce
+      POSTGRES_PASSWORD: commerce
+      POSTGRES_DB: commerceai
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U commerce -d commerceai"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  neo4j:
+    image: neo4j:5
+    environment:
+      NEO4J_AUTH: neo4j/commerceai
+      NEO4J_PLUGINS: '["apoc"]'
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4jdata:/data
+
+  localstack:
+    image: localstack/localstack:3
+    environment:
+      SERVICES: s3,sqs
+      DEFAULT_REGION: us-east-1
+    ports:
+      - "4566:4566"
+    volumes:
+      - ./scripts/localstack-init.sh:/etc/localstack/init/ready.d/init-aws.sh
+
+  core-api:
+    build:
+      context: .
+      dockerfile: services/core-api/Dockerfile
+    env_file: .env
+    environment:
+      RUNTIME_MODE: aws
+      DATABASE_URL: postgresql+asyncpg://commerce:commerce@postgres:5432/commerceai
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_ENDPOINT_URL: http://localstack:4566
+      S3_BUCKET: commerceai-documents
+      SQS_QUEUE_URL: http://localstack:4566/000000000000/commerceai-jobs
+      NEO4J_URI: bolt://neo4j:7687
+      NEO4J_USER: neo4j
+      NEO4J_PASSWORD: commerceai
+      AI_PIPELINE_URL: http://ai-pipeline:8001
+      CORS_ORIGINS: http://localhost:3000
+    ports:
+      - "8100:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      localstack:
+        condition: service_started
+      neo4j:
+        condition: service_started
+
+  ai-pipeline:
+    build:
+      context: .
+      dockerfile: services/ai-pipeline/Dockerfile
+    env_file: .env
+    environment:
+      RUNTIME_MODE: aws
+      DATABASE_URL: postgresql+asyncpg://commerce:commerce@postgres:5432/commerceai
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_ENDPOINT_URL: http://localstack:4566
+      S3_BUCKET: commerceai-documents
+      NEO4J_URI: bolt://neo4j:7687
+      NEO4J_USER: neo4j
+      NEO4J_PASSWORD: commerceai
+    ports:
+      - "8001:8001"
+    depends_on:
+      - postgres
+      - localstack
+
+  worker:
+    build:
+      context: .
+      dockerfile: services/worker/Dockerfile
+    env_file: .env
+    environment:
+      RUNTIME_MODE: aws
+      DATABASE_URL: postgresql+asyncpg://commerce:commerce@postgres:5432/commerceai
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_ENDPOINT_URL: http://localstack:4566
+      S3_BUCKET: commerceai-documents
+      SQS_QUEUE_URL: http://localstack:4566/000000000000/commerceai-jobs
+      NEO4J_URI: bolt://neo4j:7687
+      NEO4J_USER: neo4j
+      NEO4J_PASSWORD: commerceai
+    depends_on:
+      - postgres
+      - localstack
+      - core-api
+
+volumes:
+  pgdata:
+  neo4jdata:
