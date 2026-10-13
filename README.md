@@ -2,6 +2,12 @@
 
 Dual-mode AI platform that turns seller/catalog documents into structured commerce insights, catalog entities, and an agentic chat assistant.
 
+## Live demo
+
+**Dashboard:** [https://ai-commerce-insights.vercel.app/dashboard](https://ai-commerce-insights.vercel.app/dashboard)
+
+Self-contained Vercel demo (seeded SQLite + charts, no login).
+
 ## Runtime modes
 
 | Mode | When | Storage | Queue | Database | Graph |
